@@ -1,7 +1,7 @@
 <script lang="ts">
   import GameSettings from "$lib/components/options/GameSettings.svelte";
-  import ExportPNG from "$lib/components/options/ExportPNG.svelte";
-  import ImportPNG from "$lib/components/options/ImportPNG.svelte";
+  import SavePNG from "$lib/components/options/SavePNG.svelte";
+  import LoadPNG from "$lib/components/options/LoadPNG.svelte";
   import Palette from "$lib/components/options/Palette.svelte";
   import Reveal from "$lib/components/options/Reveal.svelte";
   import Sticky from "$lib/components/options/Sticky.svelte";
@@ -19,8 +19,8 @@
   class="fixed bottom-0 top-0 z-50 flex w-40 max-w-[75%] flex-col overflow-hidden rounded-l-3xl bg-white"
 >
   {#if !isGame.v}
-    <ImportPNG />
-    <ExportPNG />
+    <SavePNG />
+    <LoadPNG />
   {/if}
   <GameSettings />
   <Palette />

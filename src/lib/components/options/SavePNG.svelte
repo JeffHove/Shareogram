@@ -47,4 +47,4 @@
   };
 </script>
 
-<button {onclick}>Export as PNG</button>
+<button {onclick}>Save as PNG</button>

@@ -85,16 +85,8 @@
   });
 </script>
 
-<input accept="image/png" id="file-upload" type="file" bind:files />
+<input class="hidden" accept="image/png" id="file-upload" type="file" bind:files />
+<label class="w-full cursor-pointer bg-[ButtonFace] p-2.5 text-center font-sans text-black active:brightness-50 hover:brightness-75" for="file-upload">Load PNG</label>
 {#if files}
   <input class="mx-2" bind:value={tolerance} type="range" max="442" min="10" />
 {/if}
-
-<style>
-  input[type="file"]::file-selector-button {
-    border: 0;
-    padding: 10px;
-    width: 100%;
-    cursor: pointer;
-  }
-</style>
