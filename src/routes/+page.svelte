@@ -125,7 +125,7 @@
 Ignoring ‘preventDefault()’ call on event of type ‘wheel’ from a listener registered as ‘passive’. -->
 <svelte:window on:wheel|nonpassive={onwheel} oncontextmenu={e => e.preventDefault()} {onload} onbeforeunload={(e) => { handleBeforeUnload(e); }} />
 
-<svelte:body use:pinch {onpinch}></svelte:body>
+<svelte:body use:pinch={() => ({})} {onpinch} />
 
 <Background />
 
