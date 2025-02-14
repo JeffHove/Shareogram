@@ -7,7 +7,7 @@
 <footer class="flex justify-center">
   <div class="flex overflow-hidden rounded-t-lg">
     <button
-      style:filter={sidebarOn.v ? "brightness(60%)" : ""}
+      style:filter={sidebarOn.v ? "brightness(50%)" : ""}
       onclick={() => { sidebarOn.v = !sidebarOn.v; }}
     >Options</button>
     <div>

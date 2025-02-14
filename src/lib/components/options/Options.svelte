@@ -7,32 +7,28 @@
   import Sticky from "$lib/components/options/Sticky.svelte";
   import Scale from "$lib/components/options/Scale.svelte";
   import { sidebarOn, isGame } from "$lib/refs.svelte";
+  import { fly } from "svelte/transition";
 
   const onkeydown = (e: KeyboardEvent) => { if (e.key === "o") sidebarOn.v = !sidebarOn.v; };
 </script>
 
 <svelte:window {onkeydown} />
 
-<!-- Note: doing an if and using transition:fly breaks dragscroll for some reason. -->
-<div
-  style:right={ sidebarOn.v ? "0" : "-300px" }
-  class="fixed bottom-0 top-0 z-50 flex w-40 max-w-[75%] flex-col overflow-hidden rounded-l-3xl bg-white"
->
-  {#if !isGame.v}
-    <SavePNG />
-    <LoadPNG />
-  {/if}
-  <GameSettings />
-  <Palette />
-  <Scale />
-  {#if isGame.v}
-    <Sticky />
-    <Reveal />
-  {/if}
-</div>
-
-<style>
-  div {
-    transition: right .5s;
-  }
-</style>
+{#if sidebarOn.v}
+  <div
+    class="fixed inset-y-0 right-0 z-50 flex w-40 max-w-[75%] flex-col overflow-hidden rounded-l-3xl bg-white"
+    transition:fly={{ x: 80 }}
+  >
+    {#if !isGame.v}
+      <SavePNG />
+      <LoadPNG />
+    {/if}
+    <GameSettings />
+    <Palette />
+    <Scale />
+    {#if isGame.v}
+      <Sticky />
+      <Reveal />
+    {/if}
+  </div>
+{/if}

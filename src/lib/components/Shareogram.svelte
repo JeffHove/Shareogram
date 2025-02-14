@@ -371,7 +371,7 @@
                 style:opacity={isHintSatisfied(i, j, columnHint, false) ? 0.2 : 1}
                 style:color={colors.v[lettersToNum(columnHint.letters)]}
                 style:font-size={isColumnHintsSticky.v ? ".5rem" : ""}
-                class="font-normal"
+                class="font-bold"
               >
                 {columnHint.count}
               </div>
@@ -398,7 +398,7 @@
                   style:width={isRowHintsSticky.v ? ".75rem" : "1.5rem"}
                   style:color={colors.v[lettersToNum(rowHint.letters)]}
                   style:font-size={isRowHintsSticky.v ? ".5rem" : ""}
-                  class="flex items-center justify-center"
+                  class="flex items-center justify-center font-bold"
                 >{rowHint.count}</div>
               {/each}
             </div>

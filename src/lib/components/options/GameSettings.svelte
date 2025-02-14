@@ -11,15 +11,17 @@
   <div class="flex">
     <input
       oninput={() => { editorWidth.v = sanitizeNumberInput(editorWidth.v); newEditor(); }}
-      class="min-w-0 text-center"
+      class="min-w-0 p-2.5 text-center text-black"
       bind:value={editorWidth.v}
       type="text"
+      inputmode="numeric"
     />
     <input
       oninput={() => { editorHeight.v = sanitizeNumberInput(editorHeight.v); newEditor(); }}
-      class="min-w-0 text-center"
+      class="min-w-0 p-2.5 text-center text-black"
       bind:value={editorHeight.v}
       type="text"
+      inputmode="numeric"
     />
   </div>
 {/if}

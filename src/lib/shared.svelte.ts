@@ -1,5 +1,8 @@
 import { tilesHistoryIndexer, editorHeight, tilesHistory, editorWidth, isXSelected, type Tile, colors, tiles } from "$lib/refs.svelte";
 
+export const MAX_SCALE = 3;
+export const MIN_SCALE = 0.5;
+
 export const isActive = (tile: Tile) => tile.colorIndex !== 0;
 
 export const initializeTiles = () => {

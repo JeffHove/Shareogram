@@ -35,7 +35,7 @@
   {#each colors.v as _, i}
     <button
       class="flex aspect-square h-8 flex-1 items-center justify-center p-0"
-      style:filter={i === colorsIndexer.v ? "brightness(60%)" : ""}
+      style:filter={i === colorsIndexer.v ? "brightness(50%)" : ""}
       style:color={i === 0 ? colors.v[1] : colors.v[0]}
       onclick={() => { handleClickColor(i); }}
       style:background-color={colors.v[i]}
@@ -44,13 +44,13 @@
   {#if isGame.v}
     <button
       class="flex aspect-square h-8 flex-1 items-center justify-center p-0"
-      style:filter={isXSelected.v ? "brightness(60%)" : ""}
+      style:filter={isXSelected.v ? "brightness(50%)" : ""}
       onclick={handleClickX}
     >X</button>
   {/if}
   <button
     class="flex aspect-square h-8 flex-1 items-center justify-center p-0"
-    style:filter={isMoveSelected.v ? "brightness(60%)" : ""}
+    style:filter={isMoveSelected.v ? "brightness(50%)" : ""}
     onclick={handleClickMove}
     aria-label="Move"
   >
@@ -59,7 +59,7 @@
   {#if isGame.v}
     <button
       class="flex aspect-square h-8 flex-1 items-center justify-center p-0"
-      style:filter={is2dSelected.v ? "brightness(60%)" : ""}
+      style:filter={is2dSelected.v ? "brightness(50%)" : ""}
       onclick={handleClick2d}
     >2d</button>
   {/if}

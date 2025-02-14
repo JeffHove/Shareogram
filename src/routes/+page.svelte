@@ -1,12 +1,30 @@
 <script lang="ts">
-  import { isChangeHashAllowed, isMoveSelected, tilesSolution, editorHeight, tilesHistory, editorWidth, type Tile, sidebarOn, bgColor, colors, isGame, tiles } from "$lib/refs.svelte";
+  import { isChangeHashAllowed, isMoveSelected, tilesSolution, editorHeight, tilesHistory, editorWidth, tableScale, type Tile, sidebarOn, bgColor, colors, isGame, tiles } from "$lib/refs.svelte";
+  import { lettersToNum, MAX_SCALE, MIN_SCALE } from "$lib/shared.svelte";
+  import { type PinchCustomEvent, pinch } from "svelte-gestures";
   import Options from "$lib/components/options/Options.svelte";
   import Shareogram from "$lib/components/Shareogram.svelte";
   import Background from "$lib/components/Background.svelte";
   import Footer from "$lib/components/footer/Footer.svelte";
   import Header from "$lib/components/Header.svelte";
-  import { lettersToNum } from "$lib/shared.svelte";
   import { dragscroll } from "$lib/dragscroll";
+
+  let scale = $state(1);
+
+  const onwheel = (e: WheelEvent) => {
+    e.preventDefault();
+    if (e.deltaY < 0 && tableScale.v < MAX_SCALE) tableScale.v += 0.05;
+    else if (e.deltaY > 0 && tableScale.v > MIN_SCALE) tableScale.v -= 0.05;
+  };
+
+  const onpinch = (e: PinchCustomEvent) => {
+    if (!isMoveSelected.v) return;
+    const _scale = scale;
+    scale = e.detail.scale;
+    const isZoomOut = scale < _scale;
+    if (isZoomOut && tableScale.v > MIN_SCALE) tableScale.v -= 0.025;
+    else if (!isZoomOut && tableScale.v < MAX_SCALE) tableScale.v += 0.025;
+  };
 
   let loadDone = $state(false);
 
@@ -103,7 +121,11 @@
   $effect(() => { document.body.style.color = colors.v[0]; });
 </script>
 
-<svelte:window oncontextmenu={e => e.preventDefault()} {onload} onbeforeunload={(e) => { handleBeforeUnload(e); }} />
+<!-- Can't just do {onwheel} because e.preventDefault shows a warning:
+Ignoring ‘preventDefault()’ call on event of type ‘wheel’ from a listener registered as ‘passive’. -->
+<svelte:window on:wheel|nonpassive={onwheel} oncontextmenu={e => e.preventDefault()} {onload} onbeforeunload={(e) => { handleBeforeUnload(e); }} />
+
+<svelte:body use:pinch {onpinch}></svelte:body>
 
 <Background />
 

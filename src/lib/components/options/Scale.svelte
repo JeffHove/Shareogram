@@ -1,35 +1,9 @@
 <script lang="ts">
-  import { type PinchCustomEvent, pinch } from "svelte-gestures";
-  import { isMoveSelected, tableScale } from "$lib/refs.svelte";
-
-  const MAX_SCALE = 3;
-  const MIN_SCALE = 0.5;
-
-  let scale = $state(1);
-
-  const onwheel = (e: WheelEvent) => {
-    e.preventDefault();
-    if (e.deltaY < 0 && tableScale.v < MAX_SCALE) tableScale.v += 0.05;
-    else if (e.deltaY > 0 && tableScale.v > MIN_SCALE) tableScale.v -= 0.05;
-  };
-
-  const onpinch = (e: PinchCustomEvent) => {
-    if (!isMoveSelected.v) return;
-    const _scale = scale;
-    scale = e.detail.scale;
-    const isZoomOut = scale < _scale;
-    if (isZoomOut && tableScale.v > MIN_SCALE) tableScale.v -= 0.025;
-    else if (!isZoomOut && tableScale.v < MAX_SCALE) tableScale.v += 0.025;
-  };
+  import { MAX_SCALE, MIN_SCALE } from "$lib/shared.svelte";
+  import { tableScale } from "$lib/refs.svelte";
 </script>
 
 <input bind:value={tableScale.v} step=".025" max={MAX_SCALE} min={MIN_SCALE} type="range" />
-
-<!-- Can't just do {onwheel} because e.preventDefault shows a warning:
-Ignoring ‘preventDefault()’ call on event of type ‘wheel’ from a listener registered as ‘passive’. -->
-<svelte:window on:wheel|nonpassive={onwheel} />
-
-<svelte:body use:pinch {onpinch}></svelte:body>
 
 <style>
   input[type="range"] {
@@ -37,6 +11,7 @@ Ignoring ‘preventDefault()’ call on event of type ‘wheel’ from a listene
     direction: rtl;
     height: 100%;
     writing-mode: vertical-lr;
+    cursor: pointer;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
