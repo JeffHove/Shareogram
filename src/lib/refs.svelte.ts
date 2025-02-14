@@ -170,10 +170,30 @@ export const isGame: Ref<boolean> = ref<boolean>(false);
 export const clickedTile: Ref<ClickedTile> = ref<ClickedTile>({ colorIndex: -1, column: -1, Xed: false, row: -1 });
 export const isChangeHashAllowed: Ref<boolean> = ref<boolean>(false);
 export const tableScale: Ref<number> = ref<number>(1);
-export const win: Ref<boolean> = ref<boolean>(false);
 export const sidebarOn: Ref<boolean> = ref<boolean>(false);
 export const isXSelected: Ref<boolean> = ref<boolean>(false);
 export const isMoveSelected: Ref<boolean> = ref<boolean>(false);
 export const is2dSelected: Ref<boolean> = ref<boolean>(false);
 export const isRowHintsSticky: Ref<boolean> = ref<boolean>(false);
 export const isColumnHintsSticky: Ref<boolean> = ref<boolean>(false);
+
+const { differentTiles, isWin } = $derived.by(() => {
+  const differentTiles: TilePosition[] = [];
+  let isWin = true;
+  const numRows = tiles.numRows;
+  const numColumns = tiles.numColumns;
+
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numColumns; j++) {
+      if (tilesSolution.v[i][j].colorIndex !== tiles.v[i][j].colorIndex) {
+        differentTiles.push({ column: j, row: i });
+        isWin = false;
+      }
+    }
+  }
+
+  return { differentTiles, isWin };
+});
+
+export const getDifferentTiles = () => differentTiles;
+export const getIsWin = () => isWin;

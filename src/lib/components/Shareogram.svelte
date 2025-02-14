@@ -13,11 +13,11 @@
     tableScale,
     type Tile,
     type Hint,
+    getIsWin,
     bgColor,
     colors,
     isGame,
     tiles,
-    win,
   } from "$lib/refs.svelte";
   import { lettersToNum } from "$lib/shared.svelte";
   import { isActive } from "$lib/shared.svelte";
@@ -406,8 +406,8 @@
         {/if}
         {#each { length: tiles.numColumns } as _, j}
           <td
-            style:border-left={win.v || !isGame.v ? "0" : `solid ${j % 5 === 0 && j !== 0 ? `4px ${colors.v[1]}` : `2px ${bgColor.v}`}`}
-            style:border-top={win.v || !isGame.v ? "0" : `solid ${i % 5 === 0 && i !== 0 ? `4px ${colors.v[1]}` : `2px ${bgColor.v}`}`}
+            style:border-left={getIsWin() || !isGame.v ? "0" : `solid ${j % 5 === 0 && j !== 0 ? `4px ${colors.v[1]}` : `2px ${bgColor.v}`}`}
+            style:border-top={getIsWin() || !isGame.v ? "0" : `solid ${i % 5 === 0 && i !== 0 ? `4px ${colors.v[1]}` : `2px ${bgColor.v}`}`}
             class="box-content h-6 min-w-6 text-center transition-colors duration-500"
             style:background-color={colors.v[tiles.v[i][j].colorIndex]}
             onpointerdown={(e) => { handlePointerDown(e, i, j); }}
@@ -419,7 +419,7 @@
             {onkeydown}
             tabindex=0
           >
-            {#if isXed(tiles.v[i][j]) && !win.v}
+            {#if isXed(tiles.v[i][j]) && !getIsWin()}
               <span transition:fade={{ duration: 300 }}>X</span>
             {/if}
           </td>
