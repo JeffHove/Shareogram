@@ -185,7 +185,7 @@ const { differentTiles, isWin } = $derived.by(() => {
 
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numColumns; j++) {
-      if (tilesSolution.v[i][j] && tilesSolution.v[i][j].colorIndex !== tiles.v[i][j].colorIndex) {
+      if (tilesSolution.v[i] && tilesSolution.v[i][j] && tilesSolution.v[i][j].colorIndex !== tiles.v[i][j].colorIndex) {
         differentTiles.push({ column: j, row: i });
         isWin = false;
       }
