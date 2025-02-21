@@ -1,6 +1,7 @@
 <script>
-  import Background from '$lib/components/Background.svelte';
-  import { onNavigate } from '$app/navigation';
+  import Background from "$lib/components/Background.svelte";
+  import { onNavigate } from "$app/navigation";
+
   import "../app.css";
 
   onNavigate((navigation) => {

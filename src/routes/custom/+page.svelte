@@ -1,9 +1,9 @@
 <script lang="ts">
   import { isMoveSelected, tableScale, sidebarOn, colors } from "$lib/refs.svelte";
-  import { MAX_SCALE, MIN_SCALE } from "$lib/shared.svelte";
   import { type PinchCustomEvent, pinch } from "svelte-gestures";
   import Options from "$lib/components/options/Options.svelte";
   import Shareogram from "$lib/components/Shareogram.svelte";
+  import { MAX_SCALE, MIN_SCALE } from "$lib/shared.svelte";
   import Footer from "$lib/components/footer/Footer.svelte";
   import Header from "$lib/components/Header.svelte";
   import { dragscroll } from "$lib/dragscroll";

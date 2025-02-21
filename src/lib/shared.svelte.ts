@@ -1,4 +1,4 @@
-import { tilesHistoryIndexer, editorHeight, tilesHistory, editorWidth, isXSelected, type Tile, colors, tiles, isGame } from "$lib/refs.svelte";
+import { tilesHistoryIndexer, editorHeight, tilesHistory, editorWidth, isXSelected, type Tile, colors, isGame, tiles } from "$lib/refs.svelte";
 
 export const MAX_SCALE = 3;
 export const MIN_SCALE = 0.5;
@@ -34,7 +34,7 @@ export const resetHistory = () => {
   tilesHistory.reset();
   tilesHistory.v[0] = $state.snapshot(tiles.v);
   tilesHistoryIndexer.reset();
-}
+};
 
 export const newEditor = () => {
   if (editorWidth.v < 1 || editorHeight.v < 1) return;

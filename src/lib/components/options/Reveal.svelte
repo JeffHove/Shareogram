@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getDifferentTiles, getIsWin, tilesSolution, tiles } from "$lib/refs.svelte";
+  import { getDifferentTiles, tilesSolution, getIsWin, tiles } from "$lib/refs.svelte";
   import { getRandomNumberInclusive } from "$lib/utils";
   import { saveTiles } from "$lib/shared.svelte";
 

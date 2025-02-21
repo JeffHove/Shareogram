@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tilesSolution, isGame, tiles, getIsWin } from "$lib/refs.svelte";
+  import { tilesSolution, getIsWin, isGame, tiles } from "$lib/refs.svelte";
   import GitHub from "$lib/components/GitHub.svelte";
   import { newEditor } from "$lib/shared.svelte";
 </script>
