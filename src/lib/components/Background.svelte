@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getRandomNumber } from "$lib/shared.svelte";
+  import { getRandomNumberInclusive } from "$lib/utils";
   import { bgColor } from "$lib/refs.svelte";
 </script>
 
@@ -7,9 +7,9 @@
   {#each { length: 35 } as _}
     <li
       class="absolute -bottom-[200px] block aspect-square rounded-[10%] bg-white/20"
-      style:animation-delay={getRandomNumber(0, 30) + "s"}
-      style:width={getRandomNumber(5, 200) + "px"}
-      style:left={getRandomNumber(0, 100) + "%"}
+      style:animation-delay={getRandomNumberInclusive(0, 60) + "s"}
+      style:width={getRandomNumberInclusive(5, 200) + "px"}
+      style:left={getRandomNumberInclusive(0, 100) + "%"}
     ></li>
   {/each}
 </ul>

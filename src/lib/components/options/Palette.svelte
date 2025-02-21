@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isChangeHashAllowed, colorsIndexer, bgColor, colors, isGame } from "$lib/refs.svelte";
+  import { colorsIndexer, bgColor, colors, isGame } from "$lib/refs.svelte";
   import { checkTileColors } from "$lib/shared.svelte";
 
   const getRandomHexColor = () => {
@@ -25,21 +25,9 @@
     {/if}
   </div>
   <div class="flex flex-wrap">
-    <input
-      onchange={() => { isChangeHashAllowed.v = true; }}
-      onclick={() => { isChangeHashAllowed.v = false; }}
-      bind:value={bgColor.v}
-      type="color"
-      class="h-8 min-w-12 flex-1 border-0"
-    />
+    <input bind:value={bgColor.v} type="color" class="h-8 min-w-12 flex-1 border-0" />
     {#each colors.v as _, i}
-      <input
-        onchange={() => { isChangeHashAllowed.v = true; }}
-        onclick={() => { isChangeHashAllowed.v = false; }}
-        bind:value={colors.v[i]}
-        type="color"
-        class="h-8 min-w-12 flex-1 border-0"
-      />
+      <input bind:value={colors.v[i]} type="color" class="h-8 min-w-12 flex-1 border-0" />
     {/each}
   </div>
 </div>

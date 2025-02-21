@@ -1,7 +1,6 @@
 <script lang="ts">
   import {
     isColumnHintsSticky,
-    isChangeHashAllowed,
     isRowHintsSticky,
     isMoveSelected,
     colorsIndexer,
@@ -19,7 +18,6 @@
     isGame,
     tiles,
   } from "$lib/refs.svelte";
-  import { lettersToNum } from "$lib/shared.svelte";
   import { isActive } from "$lib/shared.svelte";
   import { fade } from "svelte/transition";
 
@@ -56,7 +54,6 @@
 
   const clickTile = (i: number, j: number) => {
     clickedTile.v = { colorIndex: tiles.v[i][j].colorIndex, Xed: tiles.v[i][j].Xed, column: j, row: i };
-    isChangeHashAllowed.v = false;
     numTilesEntered = 0;
 
     if (isGame.v) {
@@ -79,7 +76,6 @@
   const onpointerup = (e: PointerEvent) => {
     if (e.button === 0) isLeftHeld = false;
     else if (e.button === 2) isRightHeld = false;
-    isChangeHashAllowed.v = true;
   };
 
   const handlePointerEnter = (i: number, j: number) => {
@@ -186,13 +182,13 @@
   const getOffsets = (hintIndex: number, hints: Hint[]) => {
     let offsetHead = 0;
     for (let i = 0; i <= hintIndex; i++) {
-      if (i !== 0 && (hints[i - 1].letters === hints[i].letters)) offsetHead++;
+      if (i !== 0 && (hints[i - 1].colorIndex === hints[i].colorIndex)) offsetHead++;
       if (i < hintIndex) offsetHead += hints[i].count;
     }
 
     let offsetTail = 0;
     for (let i = hints.length - 1; i >= hintIndex; i--) {
-      if (i !== hints.length - 1 && (hints[i].letters === hints[i + 1].letters)) offsetTail++;
+      if (i !== hints.length - 1 && (hints[i].colorIndex === hints[i + 1].colorIndex)) offsetTail++;
       if (i > hintIndex) offsetTail += hints[i].count;
     }
 
@@ -205,7 +201,7 @@
     let count = 0;
     let encodesStartIndex = 0;
     while (count < offsetHead && encodesStartIndex <= encodes.length - 1) {
-      if (encodes[encodesStartIndex].letters !== "X") count += encodes[encodesStartIndex].count;
+      if (encodes[encodesStartIndex].colorIndex !== -1) count += encodes[encodesStartIndex].count;
       else if (encodesStartIndex > 0) count++;
       encodesStartIndex++;
     }
@@ -213,7 +209,7 @@
     count = 0;
     let encodesEndIndex = encodes.length - 1;
     while (count < offsetTail && encodesEndIndex >= 0) {
-      if (encodes[encodesEndIndex].letters !== "X") count += encodes[encodesEndIndex].count;
+      if (encodes[encodesEndIndex].colorIndex !== -1) count += encodes[encodesEndIndex].count;
       else if (encodesEndIndex < encodes.length - 1) count++;
       encodesEndIndex--;
     }
@@ -232,7 +228,7 @@
       const hint = hints[hintIndex];
 
       for (let i = encodesStartIndex; i <= encodesEndIndex; i++) {
-        if (hint.letters === encodes[i].letters && hint.count >= encodes[i].count) {
+        if (hint.colorIndex === encodes[i].colorIndex && hint.count >= encodes[i].count) {
           if (mapForward.slice(0, hintIndex).includes(i)) continue;
 
           mapForward[hintIndex] = i;
@@ -252,7 +248,7 @@
       const hint = hints[hintIndex];
 
       for (let i = encodesEndIndex; i >= encodesStartIndex; i--) {
-        if (hint.letters === encodes[i].letters && hint.count >= encodes[i].count) {
+        if (hint.colorIndex === encodes[i].colorIndex && hint.count >= encodes[i].count) {
           if (mapBackward.slice(hintIndex + 1).includes(i)) continue;
 
           mapBackward[hintIndex] = i;
@@ -296,7 +292,7 @@
 
       let subEncodesCount = 0;
       for (let j = 0; j < subEncodes.length; j++) {
-        if (encodes[j].letters !== "X") subEncodesCount += encodes[j].count;
+        if (encodes[j].colorIndex !== -1) subEncodesCount += encodes[j].count;
         else if (j > 0 && j < subEncodes.length - 1) subEncodesCount++;
       }
       const { offsetTail } = getOffsets(0, subHints);
@@ -369,8 +365,8 @@
             {#each tilesSolution.columnHints[i] as columnHint, j}
               <div
                 style:opacity={isHintSatisfied(i, j, columnHint, false) ? 0.2 : 1}
-                style:color={colors.v[lettersToNum(columnHint.letters)]}
                 style:font-size={isColumnHintsSticky.v ? ".5rem" : ""}
+                style:color={colors.v[columnHint.colorIndex]}
                 class="font-bold"
               >
                 {columnHint.count}
@@ -396,9 +392,9 @@
                 <div
                   style:opacity={isHintSatisfied(i, j, rowHint, true) ? 0.2 : 1}
                   style:width={isRowHintsSticky.v ? ".75rem" : "1.5rem"}
-                  style:color={colors.v[lettersToNum(rowHint.letters)]}
                   style:font-size={isRowHintsSticky.v ? ".5rem" : ""}
                   class="flex items-center justify-center font-bold"
+                  style:color={colors.v[rowHint.colorIndex]}
                 >{rowHint.count}</div>
               {/each}
             </div>

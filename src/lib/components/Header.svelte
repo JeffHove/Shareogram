@@ -10,6 +10,6 @@
   {#if isGame.v}
     <span class="pt-2.5">{getIsWin() ? "You win!" : "Keep trying"}</span>
   {:else}
-    <button class="rounded-b-lg" onclick={() => { isGame.v = true; tilesSolution.v = tiles.v; newEditor(); }}>Start Game</button>
+    <button class="-mt-1 rounded-b-lg" onclick={() => { isGame.v = true; tilesSolution.v = tiles.v; newEditor(); }}>Play</button>
   {/if}
 </header>

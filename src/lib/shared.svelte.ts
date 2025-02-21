@@ -1,4 +1,4 @@
-import { tilesHistoryIndexer, editorHeight, tilesHistory, editorWidth, isXSelected, type Tile, colors, tiles } from "$lib/refs.svelte";
+import { tilesHistoryIndexer, editorHeight, tilesHistory, editorWidth, isXSelected, type Tile, colors, tiles, isGame } from "$lib/refs.svelte";
 
 export const MAX_SCALE = 3;
 export const MIN_SCALE = 0.5;
@@ -30,27 +30,21 @@ export const saveTiles = () => {
   tilesHistory.v.push($state.snapshot(tiles.v));
 };
 
-export const newEditor = () => {
-  if (editorWidth.v < 1 || editorHeight.v < 1) return;
-  tiles.v = initializeTiles();
+export const resetHistory = () => {
   tilesHistory.reset();
   tilesHistory.v[0] = $state.snapshot(tiles.v);
   tilesHistoryIndexer.reset();
-  isXSelected.v = false;
-};
+}
 
-export const lettersToNum = (letters: string) => {
-  let num = 0;
-  for (let i = 0; i < letters.length; i++) {
-    num *= 26;
-    num += letters.charCodeAt(i) - 97 + 1;
-  }
-  return num - 1;
+export const newEditor = () => {
+  if (editorWidth.v < 1 || editorHeight.v < 1) return;
+  tiles.v = initializeTiles();
+  if (isGame.v) resetHistory();
+  else saveTiles();
+  isXSelected.v = false;
 };
 
 export const hexToRGB = (hex: string): [number, number, number] => {
   const bigint = parseInt(hex.replace("#", ""), 16);
   return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
 };
-
-export const getRandomNumber = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tilesHistoryIndexer, tilesHistory, clickedTile, tiles } from "$lib/refs.svelte";
+  import { tilesHistoryIndexer, tilesHistory, clickedTile, tiles, editorHeight, editorWidth } from "$lib/refs.svelte";
   import { checkTileColors, saveTiles } from "$lib/shared.svelte";
 
   const onpointerup = () => {
@@ -12,15 +12,22 @@
     else if (e.key === "y") redo();
   };
 
+  const checkWidthAndHeight = () => {
+    if (tiles.numRows !== editorHeight.v) editorHeight.v = tiles.numRows;
+    if (tiles.numColumns !== editorWidth.v) editorWidth.v = tiles.numColumns;
+  }
+
   const browseHistory = () => {
     tiles.v = $state.snapshot(tilesHistory.v[tilesHistoryIndexer.v]);
     checkTileColors();
+    checkWidthAndHeight();
   };
 
   const undo = () => {
     if (tilesHistoryIndexer.v !== 0) {
       tilesHistoryIndexer.v--;
       browseHistory();
+      
     }
   };
 
