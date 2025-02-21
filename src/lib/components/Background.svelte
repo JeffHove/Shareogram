@@ -7,7 +7,7 @@
   {#each { length: 35 } as _}
     <li
       class="absolute -bottom-[200px] block aspect-square rounded-[10%] bg-white/20"
-      style:animation-delay={getRandomNumberInclusive(0, 60) + "s"}
+      style:animation-delay={getRandomNumberInclusive(0, 30) + "s"}
       style:width={getRandomNumberInclusive(5, 200) + "px"}
       style:left={getRandomNumberInclusive(0, 100) + "%"}
     ></li>
