@@ -1,6 +1,6 @@
 # Shareogram
 
-A Nonogram/Picross/Paint-by-Numbers-like editor/player website with shareable URLs.
+A Nonogram/Picross/Paint-by-Numbers-like editor/player website.
 
 # Shortcuts
 
@@ -19,7 +19,12 @@ A Nonogram/Picross/Paint-by-Numbers-like editor/player website with shareable UR
 
 ```
 git clone https://github.com/JeffHove/Shareogram.git
-cd .\Shareogram\
-bun install
+cd Shareogram
+bun i
 bun dev
+
+bun lint
+bun format
+bun run build
+bun run preview
 ```
