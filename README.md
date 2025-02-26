@@ -15,7 +15,7 @@ A Nonogram/Picross/Paint-by-Numbers-like editor/player website.
 - z: Undo
 - o: Toggle options
 
-# Viewing Dev Build (possibly broken)
+# How to Dev
 
 ```
 git clone https://github.com/JeffHove/Shareogram.git
@@ -28,3 +28,6 @@ bun format
 bun run build
 bun run preview
 ```
+
+# Discord
+jeffhove
