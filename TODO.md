@@ -1,4 +1,3 @@
-Change dimensions of nonogram without deleting whole thing.
 Daily
 isSolvableLogically
 https://pixabay.com/

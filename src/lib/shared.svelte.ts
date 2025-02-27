@@ -38,7 +38,18 @@ export const resetHistory = () => {
 
 export const newEditor = () => {
   if (editorWidth.v < 1 || editorHeight.v < 1) return;
-  tiles.v = initializeTiles();
+
+  const oldTiles = tiles.v;
+  const newTiles: Tile[][] = [[]];
+  for (let i = 0; i < editorHeight.v; i++) {
+    newTiles[i] = [];
+    for (let j = 0; j < editorWidth.v; j++) {
+      if (oldTiles && oldTiles[i] && oldTiles[i][j]) newTiles[i][j] = { ...oldTiles[i][j] };
+      else newTiles[i][j] = { colorIndex: 0, Xed: false };
+    }
+  }
+  tiles.v = newTiles;
+
   if (isGame.v) resetHistory();
   else saveTiles();
   isXSelected.v = false;
