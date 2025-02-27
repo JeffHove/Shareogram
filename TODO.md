@@ -1,4 +1,3 @@
-Fix undo redo with arrow key input.
 Change dimensions of nonogram without deleting whole thing.
 Daily
 isSolvableLogically

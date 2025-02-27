@@ -18,7 +18,7 @@
     isGame,
     tiles,
   } from "$lib/refs.svelte";
-  import { isActive } from "$lib/shared.svelte";
+  import { isActive, saveTiles } from "$lib/shared.svelte";
   import { fade } from "svelte/transition";
 
   let isLeftHeld = $state(false);
@@ -176,8 +176,13 @@
 
     if (isLeftHeld && !isMoveSelected.v) clickTile(newRow, newCol);
   };
-
-  const onkeyup = (e: KeyboardEvent) => { if (e.key === " ") isLeftHeld = false; };
+  
+  const onkeyup = (e: KeyboardEvent) => {
+    if (e.key === " ") {
+      isLeftHeld = false;
+      saveTiles();
+    }
+  };
 
   const getOffsets = (hintIndex: number, hints: Hint[]) => {
     let offsetHead = 0;
