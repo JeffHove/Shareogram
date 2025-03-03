@@ -49,7 +49,7 @@ export const resetHistory = () => {
   tilesHistoryIndexer.reset();
 };
 
-export const updateEditor = () => {
+export const resizeEditor = () => {
   if (editorWidth.v < 1 || editorHeight.v < 1) return;
 
   const oldTiles = tiles.v;
