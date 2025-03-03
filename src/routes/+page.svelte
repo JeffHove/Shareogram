@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex h-full flex-col items-center justify-center gap-2 text-white">
-  <img src="{base}/favicon.png" alt="Logo">
+  <img src="{base}/favicon/android-chrome-192x192.png" alt="Logo">
   <h1 class="text-4xl font-bold">Shareogram</h1>
   <h2>Share nonograms easily.</h2>
   <div class="flex justify-around gap-2">
