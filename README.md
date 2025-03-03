@@ -1,6 +1,6 @@
 # Shareogram
 
-A Nonogram/Picross/Paint-by-Numbers-like editor/player website.
+A Nonogram/Picross/Paint-by-Numbers-like editor/player website with a daily puzzle.
 
 # Shortcuts
 
