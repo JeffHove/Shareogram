@@ -8,6 +8,7 @@
   import Scale from "$lib/components/options/Scale.svelte";
   import { sidebarOn, isGame } from "$lib/refs.svelte";
   import { fly } from "svelte/transition";
+  import { page } from "$app/state";
 
   const onkeydown = (e: KeyboardEvent) => { if (e.key === "o") sidebarOn.v = !sidebarOn.v; };
 </script>
@@ -23,7 +24,9 @@
       <SavePNG />
       <LoadPNG />
     {/if}
-    <GameSettings />
+    {#if page.route.id !== "/daily"}
+      <GameSettings />
+    {/if}
     <Palette />
     <Scale />
     {#if isGame.v}

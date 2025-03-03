@@ -1,5 +1,6 @@
 <script>
   import Background from "$lib/components/Background.svelte";
+  import Funding from "$lib/components/Funding.svelte";
   import { onNavigate } from "$app/navigation";
 
   import "../app.css";
@@ -17,6 +18,8 @@
 
   let { children } = $props();
 </script>
+
+<Funding />
 
 <Background />
 

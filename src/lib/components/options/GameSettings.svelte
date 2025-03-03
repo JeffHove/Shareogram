@@ -1,6 +1,6 @@
 <script lang="ts">
   import { tilesSolution, editorHeight, editorWidth, isGame, tiles } from "$lib/refs.svelte";
-  import { resetHistory, newEditor, saveTiles } from "$lib/shared.svelte";
+  import { resetHistory, updateEditor, saveTiles } from "$lib/shared.svelte";
 
   const sanitizeNumberInput = (n: number) => Math.max(0, Number(String(n).replace(/[^0-9]/g, "")));
 
@@ -23,7 +23,7 @@
 {:else}
   <div class="flex">
     <input
-      onkeydown={(e) => { if (e.key === "Enter") { newEditor(); } }}
+      onkeydown={(e) => { if (e.key === "Enter") { updateEditor(); } }}
       oninput={() => { editorWidth.v = sanitizeNumberInput(editorWidth.v); }}
       class="min-w-0 p-2.5 text-center text-black"
       bind:value={editorWidth.v}
@@ -31,7 +31,7 @@
       inputmode="numeric"
     />
     <input
-      onkeydown={(e) => { if (e.key === "Enter") { newEditor(); } }}
+      onkeydown={(e) => { if (e.key === "Enter") { updateEditor(); } }}
       oninput={() => { editorHeight.v = sanitizeNumberInput(editorHeight.v); }}
       class="min-w-0 p-2.5 text-center text-black"
       bind:value={editorHeight.v}
@@ -39,7 +39,7 @@
       inputmode="numeric"
     />
   </div>
-  <button onclick={() => { newEditor(); }}>Resize</button>
+  <button onclick={() => { updateEditor(); }}>Resize</button>
   <div class="flex">
     <button aria-label="Shift Left" class="flex-1" onclick={() => shiftTiles("left")}>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

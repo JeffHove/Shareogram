@@ -1,5 +1,3 @@
-import { initializeTiles } from "$lib/shared.svelte";
-
 export type Tile = {
   colorIndex: number;
   Xed: boolean;
@@ -45,8 +43,8 @@ const ref = <T>(initial: T): Ref<T> => {
   };
 };
 
-const refTiles = (): RefTiles => {
-  const baseRef: Ref<Tile[][]> = ref<Tile[][]>(initialTiles);
+const refTiles = (initial: Tile[][]): RefTiles => {
+  const baseRef: Ref<Tile[][]> = ref<Tile[][]>(initial);
   const numRows: number = $derived(baseRef.v.length);
   const numColumns: number = $derived(baseRef.v[0].length);
   const colorIndices: number[][] = $derived.by((): number[][] => baseRef.v.map(innerArray => innerArray.map(item => item["colorIndex"])));
@@ -125,11 +123,18 @@ export const bgColor: Ref<string> = ref<string>("#476fb8");
 export const colors: Ref<string[]> = ref<string[]>(["#f8fafc", "#020617"]);
 export const colorsIndexer: Ref<number> = ref<number>(1);
 
+const initialTiles = [
+  [{ colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }],
+  [{ colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }],
+  [{ colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }],
+  [{ colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }],
+  [{ colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }, { colorIndex: 0, Xed: false }],
+];
+
 export const editorWidth: Ref<number> = ref<number>(5);
 export const editorHeight: Ref<number> = ref<number>(5);
-const initialTiles: Tile[][] = initializeTiles();
-export const tiles: RefTiles = refTiles();
-export const tilesSolution: RefTiles = refTiles();
+export const tiles: RefTiles = refTiles(initialTiles);
+export const tilesSolution: RefTiles = refTiles(initialTiles);
 export const tilesHistory: Ref<Tile[][][]> = ref<Tile[][][]>([initialTiles]);
 export const tilesHistoryIndexer: Ref<number> = ref<number>(0);
 
