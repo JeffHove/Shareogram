@@ -16,7 +16,7 @@
   <div class="text-center text-xs">
     <h3 class="font-bold">{today}</h3>
     <p>No. {dailyNonogram.id}</p>
-    <p>By {dailyNonogram.artist}</p>
+    <p>Art By {dailyNonogram.artist}</p>
     {#if dailyNonogram.donate}
       <br>
       <p>Support the artist:</p>
