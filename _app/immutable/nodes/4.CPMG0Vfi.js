@@ -1,1 +1,0 @@
-import"../chunks/V5aHZNy7.js";import{p as r,u as s,a as i}from"../chunks/B7cm8bZ7.js";import{M as p,l as m}from"../chunks/Du2obIY7.js";import{d as c}from"../chunks/C7aIRd3p.js";function d(o,e){r(e,!0);const t=async a=>{const n=await(await fetch(a)).blob();return new File([n],"image.png",{type:"image/png"})};s(()=>{t(c.img).then(a=>{m(a,0)})}),p(o,{}),i()}export{d as component};
