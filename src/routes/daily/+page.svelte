@@ -11,7 +11,7 @@
 
   $effect(() => {
     loadImageFile(dailyNonogram.img).then((file) => {
-      loadPNG(file, 0);
+      loadPNG(file, 30);
     });
   });
 </script>
