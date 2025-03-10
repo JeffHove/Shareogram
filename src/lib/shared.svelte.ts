@@ -1,4 +1,5 @@
 import { tilesHistoryIndexer, colorsIndexer, tilesSolution, editorHeight, tilesHistory, editorWidth, isXSelected, type Tile, colors, isGame, tiles } from "$lib/refs.svelte";
+import { testNonogramSolver } from "./solver";
 import { page } from "$app/state";
 
 export const MAX_SCALE = 3;
@@ -7,10 +8,23 @@ export const MIN_SCALE = 0.5;
 export const isActive = (tile: Tile) => tile.colorIndex !== 0;
 
 export const startGame = () => {
-  isGame.v = true;
-  tilesSolution.v = $state.snapshot(tiles.v);
-  newEditor();
-  resetHistory();
+  const { hasUniqueSolution, solutions } = testNonogramSolver(tiles.rowHints, tiles.columnHints);
+  let asd = "";
+  solutions.forEach((solution, index) => {
+    asd += `Solution ${index + 1}:\n`;
+    solution.forEach(row => {
+      asd += row + "\n";
+    });
+  });
+  if (hasUniqueSolution) {
+    isGame.v = true;
+    tilesSolution.v = $state.snapshot(tiles.v);
+    newEditor();
+    resetHistory();
+  }
+  else {
+    alert(asd);
+  }
 };
 
 export const newEditor = () => {
