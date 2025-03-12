@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isMoveSelected, tableScale, sidebarOn, colors } from "$lib/refs.svelte";
+  import { getHasUniqueSolution, isMoveSelected, tableScale, sidebarOn, colors, isGame } from "$lib/refs.svelte";
   import { type PinchCustomEvent, pinch } from "svelte-gestures";
   import Options from "$lib/components/options/Options.svelte";
   import Shareogram from "$lib/components/Shareogram.svelte";
@@ -39,6 +39,10 @@ Ignoring ‘preventDefault()’ call on event of type ‘wheel’ from a listene
 <svelte:window on:wheel|nonpassive={onwheel} oncontextmenu={e => e.preventDefault()} {onload} onbeforeunload={(e) => { handleBeforeUnload(e); }} />
 
 <svelte:body use:pinch={() => ({})} {onpinch} />
+
+{#if !isGame.v}
+  <span title="Is Solveable Logically" class="absolute top-0 right-0 m-0.5 text-3xl">{getHasUniqueSolution() ? "✅" : "❌"}</span>
+{/if}
 
 <Header />
 

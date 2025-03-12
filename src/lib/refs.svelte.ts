@@ -1,3 +1,5 @@
+import { testNonogram } from "./solver";
+
 export type Tile = {
   colorIndex: number;
   Xed: boolean;
@@ -168,3 +170,7 @@ const { differentTiles, isWin } = $derived.by(() => {
 
 export const getDifferentTiles = () => differentTiles;
 export const getIsWin = () => isWin;
+
+const hasUniqueSolution = $derived(testNonogram(tiles.rowHints, tiles.columnHints));
+
+export const getHasUniqueSolution = () => hasUniqueSolution;
