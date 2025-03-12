@@ -1,12 +1,12 @@
 import sunglassesEmoji from "$lib/images/sunglasses-emoji.png";
 import spaceInvader from "$lib/images/space-invader.png";
 import trafficLight from "$lib/images/traffic-light.png";
-import swordShield from "$lib/images/sword-shield.png";
+// import swordShield from "$lib/images/sword-shield.png";
 import gasStation from "$lib/images/gas-station.png";
 import hourglass from "$lib/images/hourglass.png";
-import snowman from "$lib/images/snowman.png";
+// import snowman from "$lib/images/snowman.png";
 import castle from "$lib/images/castle.png";
-import cursor from "$lib/images/cursor.png";
+// import cursor from "$lib/images/cursor.png";
 import potion from "$lib/images/potion.png";
 import turtle from "$lib/images/turtle.png";
 import weight from "$lib/images/weight.png";
