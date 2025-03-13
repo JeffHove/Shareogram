@@ -1,9 +1,9 @@
 <script lang="ts">
   import { getRandomNumberInclusive } from "$lib/utils";
-  import { bgColor } from "$lib/refs.svelte";
+  import { preferences } from "$lib/refs.svelte";
 </script>
 
-<ul style:background-color={bgColor.v} class="absolute inset-0 -z-10 m-0 overflow-hidden p-0">
+<ul style:background-color={preferences.current.bgColor} class="absolute inset-0 -z-10 m-0 overflow-hidden p-0">
   {#each { length: 35 } as _}
     <li
       class="absolute -bottom-[200px] block aspect-square rounded-[10%] bg-white/20"
