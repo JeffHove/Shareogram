@@ -407,8 +407,8 @@
         {/if}
         {#each { length: tiles.numColumns } as _, j}
           <td
-            style:border-left={getIsWin() || !isGame.v ? "0" : `solid ${j % 5 === 0 && j !== 0 ? `4px ${colors.v[1]}` : `2px ${preferences.current.bgColor}`}`}
-            style:border-top={getIsWin() || !isGame.v ? "0" : `solid ${i % 5 === 0 && i !== 0 ? `4px ${colors.v[1]}` : `2px ${preferences.current.bgColor}`}`}
+            style:border-left={getIsWin() || !isGame.v ? "0" : `solid ${j % 5 === 0 && j !== 0 ? "4px" : "2px"} ${preferences.current.bgColor}`}
+            style:border-top={getIsWin() || !isGame.v ? "0" : `solid ${i % 5 === 0 && i !== 0 ? "4px" : "2px"} ${preferences.current.bgColor}`}
             class="box-content h-6 min-w-6 text-center transition-colors duration-500"
             style:background-color={colors.v[tiles.v[i][j].colorIndex]}
             onpointerdown={(e) => { handlePointerDown(e, i, j); }}
