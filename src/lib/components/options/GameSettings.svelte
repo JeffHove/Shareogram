@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { tilesSolution, editorHeight, editorWidth, isGame, tiles } from "$lib/refs.svelte";
-  import { resetHistory, resizeEditor, saveTiles, newEditor } from "$lib/shared.svelte";
+  import { resizeEditor, startEditor, saveTiles, newEditor } from "$lib/shared.svelte";
+  import { editorHeight, editorWidth, isGame, tiles } from "$lib/refs.svelte";
 
   const sanitizeNumberInput = (n: number) => Math.max(0, Number(String(n).replace(/[^0-9]/g, "")));
 
@@ -19,7 +19,7 @@
 </script>
 
 {#if isGame.v}
-  <button onclick={() => { isGame.v = false; tiles.v = tilesSolution.v; resetHistory(); }}>Edit</button>
+  <button onclick={() => { startEditor(); }}>Edit</button>
 {:else}
   <div class="flex">
     <input
@@ -27,16 +27,16 @@
       oninput={() => { editorWidth.v = sanitizeNumberInput(editorWidth.v); }}
       class="min-w-0 p-2.5 text-center text-black"
       bind:value={editorWidth.v}
-      type="text"
       inputmode="numeric"
+      type="text"
     />
     <input
       onkeydown={(e) => { if (e.key === "Enter") { resizeEditor(); } }}
       oninput={() => { editorHeight.v = sanitizeNumberInput(editorHeight.v); }}
       class="min-w-0 p-2.5 text-center text-black"
       bind:value={editorHeight.v}
-      type="text"
       inputmode="numeric"
+      type="text"
     />
   </div>
   <div class="flex">

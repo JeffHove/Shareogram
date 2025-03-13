@@ -1,8 +1,18 @@
 <script lang="ts">
+  import { editorHeight, editorWidth, colors } from "$lib/refs.svelte";
+  import { startEditor, newEditor } from "$lib/shared.svelte";
   import { dailyNonogram } from "$lib/nonograms";
   import { base } from "$app/paths";
 
   const today = new Date().toLocaleDateString("en-US", { year: "numeric", day: "numeric", month: "long" });
+
+  const onclick = () => {
+    editorWidth.reset();
+    editorHeight.reset();
+    colors.reset();
+    startEditor();
+    newEditor();
+  };
 </script>
 
 <div class="flex h-full flex-col items-center justify-center gap-2 text-white">
@@ -10,7 +20,7 @@
   <h1 class="text-4xl font-bold">Shareogram</h1>
   <h2>Share nonograms easily.</h2>
   <div class="flex justify-around gap-2">
-    <a class="w-20 rounded-2xl bg-[ButtonFace] p-2 text-center text-black active:brightness-50 hover:brightness-75" href="{base}/custom">Custom</a>
+    <a class="w-20 rounded-2xl bg-[ButtonFace] p-2 text-center text-black active:brightness-50 hover:brightness-75" href="{base}/custom" {onclick}>Custom</a>
     <a class="w-20 rounded-2xl bg-[ButtonFace] p-2 text-center text-black active:brightness-50 hover:brightness-75" href="{base}/daily">Daily</a>
   </div>
   <div class="text-center text-xs">

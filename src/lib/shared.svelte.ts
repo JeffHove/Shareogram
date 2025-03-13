@@ -6,6 +6,12 @@ export const MIN_SCALE = 0.5;
 
 export const isActive = (tile: Tile) => tile.colorIndex !== 0;
 
+export const startEditor = () => {
+  isGame.v = false;
+  tiles.v = tilesSolution.v;
+  resetHistory();
+};
+
 export const startGame = () => {
   isGame.v = true;
   tilesSolution.v = $state.snapshot(tiles.v);
