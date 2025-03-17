@@ -8,7 +8,7 @@
   import Header from "$lib/components/Header.svelte";
   import { dragscroll } from "$lib/dragscroll";
 
-  let scale = $state(1);
+  let scale = $state(MIN_SCALE);
 
   const onwheel = (e: WheelEvent) => {
     e.preventDefault();
