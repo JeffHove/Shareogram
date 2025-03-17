@@ -10,7 +10,6 @@ A Nonogram/Picross/Paint-by-Numbers-like editor/player website with a daily puzz
 - 1-9: Select color
 - x: Select X
 - m: Select Move
-- d: Toggle 2d
 - y: Redo
 - z: Undo
 - o: Toggle options
