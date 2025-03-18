@@ -151,23 +151,19 @@ export const isMoveSelected: Ref<boolean> = ref<boolean>(false);
 export const isRowHintsSticky: Ref<boolean> = ref<boolean>(false);
 export const isColumnHintsSticky: Ref<boolean> = ref<boolean>(false);
 
-const { differentTiles, isWin } = $derived.by(() => {
-  const differentTiles: TilePosition[] = [];
+const isWin = $derived.by(() => {
   let isWin = true;
-  const numRows = tiles.numRows;
-  const numColumns = tiles.numColumns;
-
-  for (let i = 0; i < numRows; i++) {
-    for (let j = 0; j < numColumns; j++) {
+  
+  for (let i = 0; i < tiles.numRows; i++) {
+    for (let j = 0; j < tiles.numColumns; j++) {
       if (tilesSolution.v[i] && tilesSolution.v[i][j] && tilesSolution.v[i][j].colorIndex !== tiles.v[i][j].colorIndex) {
-        differentTiles.push({ column: j, row: i });
         isWin = false;
       }
     }
   }
-
-  return { differentTiles, isWin };
+  
+  return isWin;
 });
 
-export const getDifferentTiles = () => differentTiles;
+
 export const getIsWin = () => isWin;

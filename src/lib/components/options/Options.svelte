@@ -3,7 +3,6 @@
   import SavePNG from "$lib/components/options/SavePNG.svelte";
   import LoadPNG from "$lib/components/options/LoadPNG.svelte";
   import Palette from "$lib/components/options/Palette.svelte";
-  import Reveal from "$lib/components/options/Reveal.svelte";
   import Sticky from "$lib/components/options/Sticky.svelte";
   import Scale from "$lib/components/options/Scale.svelte";
   import { sidebarOn, isGame } from "$lib/refs.svelte";
@@ -31,7 +30,6 @@
     <Scale />
     {#if isGame.v}
       <Sticky />
-      <Reveal />
     {/if}
   </div>
 {/if}
