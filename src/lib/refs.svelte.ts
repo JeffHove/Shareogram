@@ -151,18 +151,23 @@ export const isMoveSelected: Ref<boolean> = ref<boolean>(false);
 export const isRowHintsSticky: Ref<boolean> = ref<boolean>(false);
 export const isColumnHintsSticky: Ref<boolean> = ref<boolean>(false);
 
-const isWin = $derived.by(() => {
+// Doing it properly with return false, return true, and
+// const isWin = ... kills performance in test case:
+// Load PNG hourglass.png => Play => Edit => Draw something. 
+const { isWin } = $derived.by(() => {
   let isWin = true;
+  const numRows = tiles.numRows;
+  const numColumns = tiles.numColumns;
 
-  for (let i = 0; i < tiles.numRows; i++) {
-    for (let j = 0; j < tiles.numColumns; j++) {
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numColumns; j++) {
       if (tilesSolution.v[i] && tilesSolution.v[i][j] && tilesSolution.v[i][j].colorIndex !== tiles.v[i][j].colorIndex) {
         isWin = false;
       }
     }
   }
 
-  return isWin;
+  return { isWin };
 });
 
 export const getIsWin = () => isWin;
