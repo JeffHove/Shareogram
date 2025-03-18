@@ -153,7 +153,7 @@ export const isColumnHintsSticky: Ref<boolean> = ref<boolean>(false);
 
 const isWin = $derived.by(() => {
   let isWin = true;
-  
+
   for (let i = 0; i < tiles.numRows; i++) {
     for (let j = 0; j < tiles.numColumns; j++) {
       if (tilesSolution.v[i] && tilesSolution.v[i][j] && tilesSolution.v[i][j].colorIndex !== tiles.v[i][j].colorIndex) {
@@ -161,9 +161,8 @@ const isWin = $derived.by(() => {
       }
     }
   }
-  
+
   return isWin;
 });
-
 
 export const getIsWin = () => isWin;
