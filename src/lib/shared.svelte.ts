@@ -127,7 +127,7 @@ export const loadPNG = (file: File, tolerance: number) => {
         ctx.drawImage(img, 0, 0);
 
         const imageData = ctx.getImageData(0, 0, img.width, img.height).data;
-        const colorMap: string[] = [];
+        const colorMap: string[] = ["#ffffff"];
         const array: number[][] = [];
 
         for (let y = 0; y < img.height; y++) {
