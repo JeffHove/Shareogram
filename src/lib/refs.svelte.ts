@@ -124,7 +124,7 @@ const refTiles = (initial: Tile[][]): RefTiles => {
 export const preferences = new LocalStorage("preferences", {
   bgColor: "#476fb8",
 });
-export const colors: Ref<string[]> = ref<string[]>(["#f8fafc", "#020617"]);
+export const colors: Ref<string[]> = ref<string[]>(["#ffffff", "#000000"]);
 export const colorsIndexer: Ref<number> = ref<number>(1);
 
 const initialTiles = [
