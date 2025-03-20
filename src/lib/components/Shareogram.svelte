@@ -400,17 +400,17 @@
           </td>
         {/each}
         {#if tiles.numRows > 10 && isGame.v}
-          <td class="px-1 text-center">
+          <td class="sticky right-0 px-0.5 text-center text-xs" style:color={colors.v[1]}>
             {i % 5 === 4 ? i + 1 : ""}
           </td>
         {/if}
       </tr>
     {/each}
     {#if tiles.numColumns > 10 && isGame.v}
-      <tr>
+      <tr class="sticky bottom-0">
         <td></td>
         {#each { length: tiles.numColumns } as _, j}
-          <td class="text-center">
+          <td class="text-center text-xs" style:color={colors.v[1]}>
             {j % 5 === 4 ? j + 1 : ""}
           </td>
         {/each}
