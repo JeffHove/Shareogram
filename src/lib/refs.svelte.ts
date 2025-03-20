@@ -151,23 +151,32 @@ export const isMoveSelected: Ref<boolean> = ref<boolean>(false);
 export const isRowHintsSticky: Ref<boolean> = ref<boolean>(false);
 export const isColumnHintsSticky: Ref<boolean> = ref<boolean>(false);
 
-// Doing it properly with return false, return true, and
-// const isWin = ... kills performance in test case:
-// Load PNG hourglass.png => Play => Edit => Draw something. 
-const { isWin } = $derived.by(() => {
-  let isWin = true;
-  const numRows = tiles.numRows;
-  const numColumns = tiles.numColumns;
+export const getIsWin = () => {
+  const isWin = $derived.by(() => {
+    if (!isGame.v) return false;
 
-  for (let i = 0; i < numRows; i++) {
-    for (let j = 0; j < numColumns; j++) {
-      if (tilesSolution.v[i] && tilesSolution.v[i][j] && tilesSolution.v[i][j].colorIndex !== tiles.v[i][j].colorIndex) {
-        isWin = false;
+    for (let i = 0; i < tiles.numRows; i++) {
+      if (tiles.rowHints[i].length !== tilesSolution.rowHints[i].length) return false;
+      for (let j = 0; j < tiles.rowHints[i].length; j++) {
+        if (
+          tiles.rowHints[i][j].count !== tilesSolution.rowHints[i][j].count
+          || tiles.rowHints[i][j].colorIndex !== tilesSolution.rowHints[i][j].colorIndex
+        ) return false;
       }
     }
-  }
 
-  return { isWin };
-});
+    for (let i = 0; i < tiles.numColumns; i++) {
+      if (tiles.columnHints[i].length !== tilesSolution.columnHints[i].length) return false;
+      for (let j = 0; j < tiles.columnHints[i].length; j++) {
+        if (
+          tiles.columnHints[i][j].count !== tilesSolution.columnHints[i][j].count
+          || tiles.columnHints[i][j].colorIndex !== tilesSolution.columnHints[i][j].colorIndex
+        ) return false;
+      }
+    }
 
-export const getIsWin = () => isWin;
+    return true;
+  });
+
+  return isWin;
+};
