@@ -4,6 +4,7 @@ A Nonogram/Picross/Paint-by-Numbers-like editor/player website with a daily puzz
 
 # Shortcuts
 
+- Focus Tile (Tab) => Arrow Keys: Keyboard Selection
 - Right Click: Deletes or Xes
 - Middle Click: Dragscroll
 - Scroll: Zoom in/out
