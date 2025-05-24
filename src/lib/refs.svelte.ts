@@ -151,30 +151,32 @@ export const isMoveSelected: Ref<boolean> = ref<boolean>(false);
 export const isRowHintsSticky: Ref<boolean> = ref<boolean>(false);
 export const isColumnHintsSticky: Ref<boolean> = ref<boolean>(false);
 
-const isWin = $derived.by(() => {
-  if (!isGame.v) return false;
+export const getIsWin = () => {
+  const isWin = $derived.by(() => {
+    if (!isGame.v) return false;
 
-  for (let i = 0; i < tiles.numRows; i++) {
-    if (tiles.rowHints[i].length !== tilesSolution.rowHints[i].length) return false;
-    for (let j = 0; j < tiles.rowHints[i].length; j++) {
-      if (
-        tiles.rowHints[i][j].count !== tilesSolution.rowHints[i][j].count
-        || tiles.rowHints[i][j].colorIndex !== tilesSolution.rowHints[i][j].colorIndex
-      ) return false;
+    for (let i = 0; i < tiles.numRows; i++) {
+      if (tiles.rowHints[i].length !== tilesSolution.rowHints[i].length) return false;
+      for (let j = 0; j < tiles.rowHints[i].length; j++) {
+        if (
+          tiles.rowHints[i][j].count !== tilesSolution.rowHints[i][j].count
+          || tiles.rowHints[i][j].colorIndex !== tilesSolution.rowHints[i][j].colorIndex
+        ) return false;
+      }
     }
-  }
 
-  for (let i = 0; i < tiles.numColumns; i++) {
-    if (tiles.columnHints[i].length !== tilesSolution.columnHints[i].length) return false;
-    for (let j = 0; j < tiles.columnHints[i].length; j++) {
-      if (
-        tiles.columnHints[i][j].count !== tilesSolution.columnHints[i][j].count
-        || tiles.columnHints[i][j].colorIndex !== tilesSolution.columnHints[i][j].colorIndex
-      ) return false;
+    for (let i = 0; i < tiles.numColumns; i++) {
+      if (tiles.columnHints[i].length !== tilesSolution.columnHints[i].length) return false;
+      for (let j = 0; j < tiles.columnHints[i].length; j++) {
+        if (
+          tiles.columnHints[i][j].count !== tilesSolution.columnHints[i][j].count
+          || tiles.columnHints[i][j].colorIndex !== tilesSolution.columnHints[i][j].colorIndex
+        ) return false;
+      }
     }
-  }
 
-  return true;
-});
+    return true;
+  });
 
-export const getIsWin = () => isWin;
+  return isWin;
+};
